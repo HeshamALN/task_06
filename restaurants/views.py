@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import RestaurantForm
 from .models import Restaurant
 
 def welcome(request):
@@ -18,8 +19,13 @@ def restaurant_detail(request, restaurant_id):
     return render(request, 'detail.html', context)
 
 def restaurant_create(request):
-
+    form = RestaurantForm()
+    if request.method == "POST":
+        form = RestaurantForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('restaurant-list')
     context = {
-
+        "from":form,
     }
     return render(request, 'create.html', context)
