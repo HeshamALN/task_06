@@ -5,4 +5,4 @@ class RestaurantForm (forms.ModelForm):
 	class Meta:
 		model = Restaurant
 		# fields =['name','description','opening_time','closing_time']  #look into this later
-		fields = '__all__'
+		fields = "__all__"
